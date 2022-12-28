@@ -20,13 +20,18 @@ if [[ $# -gt 0 && "$1" == "build" ]]; then
 fi
 
 set -x
-mkdir -p build
+mkdir -p \
+   "${repo}/_build" \
+   "${repo}/_zephyr" \
+   "${repo}/_modules" \
+   "${repo}/_tools" \
+   "${repo}/_bootloader"
 podman run --rm -it \
-    -v "$repo:/zephyrproject/${path}" \
-    -v "$repo/build:/zephyrproject/build" \
-    -v "${path}-zephyr:/zephyrproject/zephyr" \
-    -v "${path}-zephyr-modules:/zephyrproject/modules" \
-    -v "${path}-zephyr-tools:/zephyrproject/tools" \
-    -v "${path}-zephyr-bootloader:/zephyrproject/bootloader" \
+    -v "${repo}:/zephyrproject/${path}" \
+    -v "${repo}/_build:/zephyrproject/build" \
+    -v "${repo}/_zephyr:/zephyrproject/zephyr" \
+    -v "${repo}/_modules:/zephyrproject/modules" \
+    -v "${repo}/_tools:/zephyrproject/tools" \
+    -v "${repo}/_bootloader:/zephyrproject/bootloader" \
     -e path="${path}" \
     "$tag"
