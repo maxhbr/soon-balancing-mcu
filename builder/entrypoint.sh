@@ -10,4 +10,4 @@ west zephyr-export
 west build \
     -s "$path" \
     -p always \
-    -d ./build || bash
+    -d ./build #|| bash
