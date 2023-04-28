@@ -115,7 +115,7 @@ int main(void)
 	}
 
 	do {
-		for (led = 0; led < num_leds; led++) {
+		for (led = 0; led < 2; led++) {
 			run_led_test(led_pwm, led);
 		}
 	} while (true);
